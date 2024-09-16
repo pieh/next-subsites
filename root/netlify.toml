@@ -1,0 +1,21 @@
+# rewrite all the assets references from _legacy site
+[[redirects]]
+  from = "/_legacy/_next/*"
+  to = "https://subsites-sub.netlify.app/_legacy/_next/:splat"
+  status = 200
+  force = true
+
+# rewrite just the the /trust (and all its children) from _legacy site
+# 1. Special case for /trust that is before the wildcard one to workaround the issue of trailing slash being added
+[[redirects]]
+  from = "/trust"
+  to = "https://subsites-sub.netlify.app/_legacy/trust"
+  status = 200
+  force = true
+
+# 2. General case for all the children of /trust path
+[[redirects]]
+  from = "/trust/*"
+  to = "https://subsites-sub.netlify.app/_legacy/trust/:splat"
+  status = 200
+  force = true
